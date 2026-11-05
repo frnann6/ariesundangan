@@ -1,0 +1,448 @@
+<?php
+$hari = [
+    'Sunday' => 'Minggu',
+    'Monday' => 'Senin',
+    'Tuesday' => 'Selasa',
+    'Wednesday' => 'Rabu',
+    'Thursday' => 'Kamis',
+    'Friday' => 'Jumat',
+    'Saturday' => 'Sabtu'
+];
+
+$bulan = [
+    'January' => 'Januari',
+    'February' => 'Februari',
+    'March' => 'Maret',
+    'April' => 'April',
+    'May' => 'Mei',
+    'June' => 'Juni',
+    'July' => 'Juli',
+    'August' => 'Agustus',
+    'September' => 'September',
+    'October' => 'Oktober',
+    'November' => 'November',
+    'December' => 'Desember'
+];
+
+// $tanggal = strtotime($events['event_date']);
+
+// echo $hari[date('l', $tanggal)] . ', '
+//     . date('j', $tanggal) . ' '
+//     . $bulan[date('F', $tanggal)] . ' '
+//     . date('Y', $tanggal);
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Undangan-1</title>
+    <link rel="shortcut icon" href="../img/logo/fananda-v2.png" type="image/x-icon">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+
+    <!-- Animate Style -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+
+    <!-- AOS : Animate On Scroll -->
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+
+    <link rel="stylesheet" href="<?= base_url('css/undangan-1/undangan-1.css') ?>">
+    <link rel="stylesheet" href="<?= base_url('css/undangan-1/animate.css') ?>">
+    <link rel="stylesheet" href="<?= base_url('css/undangan-1/responsive.css') ?>">
+</head>
+
+<body>
+    <div class="cover" id="coverScreen">
+        <img src="" alt="">
+
+        <img src="<?= base_url('img/undangan-1/dekorasi/top-flow.png') ?>" alt="" class="flower flower-top-left">
+
+        <img src="<?= base_url('img/undangan-1/dekorasi/bottom-flow.png') ?>" alt="" class="flower flower-bottom">
+
+        <div class="text-center second-cover animate__animated animate__zoomIn animate__delay-1s">
+            <span class="work-sans wedding-text animate__animated animate__zoomIn animate__delay-1s">THE WEDDING
+                OF</span>
+
+            <h1 class="great-vibes animate__animated animate__zoomIn animate__delay-1s">
+                <?= esc($invitation['groom_nickname']) ?>&nbsp;&nbsp;&&nbsp;&nbsp;<?= esc($invitation['bride_nickname']) ?>
+            </h1>
+
+            <span class="work-sans kepada animate__animated animate__zoomIn animate__delay-1s">Kepada
+                Bapak/Ibu/Saudara/i</span>
+
+            <h4 id="namaTamu" class="work-sans animate__animated animate__zoomIn animate__delay-1s"></h4>
+
+            <p id="btnOpen" class="work-sans animate__animated animate__zoomIn animate__delay-1s"><i
+                    class="bi bi-envelope-open-fill"></i> Buka
+                Undangan
+            </p>
+        </div>
+    </div>
+
+    <div class="invitation" id="invitation">
+        <span id="musicToggle" class="music-toggle" type="button" aria-pressed="false"></span>
+
+        <!-- 1. Save Date -->
+        <section class="save-date">
+
+            <div class="ftl animate__animated animate__slideInLeft animate__delay-1s">
+                <img src="<?= base_url('img/undangan-1/dekorasi/top-flow.png') ?>" alt=""
+                    class="flower flower-top-left">
+            </div>
+
+            <div class="fbr animate__animated animate__slideInRight animate__delay-1s">
+                <img src="<?= base_url('img/undangan-1/dekorasi/bottom-flow.png') ?>" alt=""
+                    class="flower flower-bottom">
+            </div>
+
+            <span class="animate__animated animate__zoomIn animate__delay-1s wedding-text work-sans">THE WEDDING
+                OF</span>
+            <img src="<?= base_url('img/cover-photo/' . $invitation['slug'] . '/' . $invitation['cover_photo']) ?>"
+                class="foto animate__animated animate__zoomIn animate__delay-1s" alt="">
+            <h1 class="great-vibes animate__animated animate__zoomIn animate__delay-1s">
+                <?= esc($invitation['groom_nickname']) ?>&nbsp;&nbsp;&&nbsp;&nbsp;<?= esc($invitation['bride_nickname']) ?>
+            </h1>
+            <span
+                class="paragph text-center work-sans animate__animated animate__zoomIn animate__delay-1s work-sans">Kami
+                berharap Anda menjadi
+                bagian dari hari istimewa kami.</span>
+            <p class="date text-center work-sans animate__animated animate__zoomIn animate__delay-1s"><?php
+                                                                                                        $tanggal = strtotime($events['event_date']);
+                                                                                                        echo $hari[date('l', $tanggal)] . ', '
+                                                                                                            . date('j', $tanggal) . ' '
+                                                                                                            . $bulan[date('F', $tanggal)] . ' '
+                                                                                                            . date('Y', $tanggal);
+                                                                                                        ?></p>
+            <a href="#date-locate"
+                class="btn-save-date text-center animate__animated animate__zoomIn animate__delay-1s">Save The
+                Date</a>
+        </section>
+
+        <!-- 2. Opening Couple -->
+        <section class="opening-couple">
+            <div class="card">
+                <div class="container text-center">
+                    <p data-aos="zoom-in-up" data-aos-duration="1500" data-aos-delay="600" class="work-sans"><i>“Dan
+                            di
+                            antara tanda-tanda (kebesaran)-Nya ialah Dia menciptakan
+                            pasangan-pasangan untukmu dari
+                            jenismu sendiri, agar
+                            kamu cenderung dan merasa tenteram kepadanya, dan Dia menjadikan di antaramu rasa kasih dan
+                            sayang.
+                            Sesungguhnya pada
+                            yang demikian itu benar-benar terdapat tanda-tanda (kebesaran Allah) bagi kaum yang
+                            berpikir.”
+                            <br><br>
+                            (Qs. Ar-Rum : 21)</i>
+                    </p>
+                </div>
+            </div>
+
+            <div class="content text-center">
+                <div>
+                    <p data-aos="zoom-in" data-aos-duration="1500" data-aos-delay="600" class="great-vibes">بِسْمِ
+                        ٱللَّهِ ٱلرَّحْمَـٰنِ ٱلرَّحِيمِ</p>
+
+                    <p data-aos="zoom-in" data-aos-duration="1500" data-aos-delay="800" class="salam-pembuka work-sans">
+                        Tanpa mengurangi rasa hormat, kami mengundang Bapak/Ibu/Saudara/i
+                        serta
+                        kerabat
+                        sekalian untuk
+                        menghadiri acara
+                        pernikahan kami.</p>
+                </div>
+
+                <div>
+                    <!-- PENGANTIN PRIA -->
+                    <img data-aos="zoom-in" data-aos-duration="1500" data-aos-delay="1000" src="../img/eren.png" alt="">
+                    <h1 data-aos="zoom-in" data-aos-duration="1500" data-aos-delay="1100" class="great-vibes">
+                        <?= esc($invitation['groom_name']) ?>
+                    </h1>
+                    <span data-aos="zoom-in" data-aos-duration="1800" data-aos-delay="1200" class="work-sans">Putra
+                        pertama dari <?= esc($invitation['groom_father']) ?> <br> dan
+                        <?= esc($invitation['groom_mother']) ?></span>
+
+                    <h1 data-aos="zoom-in" data-aos-duration="1500" data-aos-delay="1200" class="great-vibes and">&</h1>
+
+                    <!-- PENGANTIN WANITA -->
+                    <img data-aos="zoom-in" data-aos-duration="1500" data-aos-delay="1200" src="../img/mikasa.png"
+                        alt="">
+                    <h1 data-aos="zoom-in" data-aos-duration="1500" data-aos-delay="1200" class="great-vibes">
+                        <?= esc($invitation['bride_name']) ?></h1>
+                    <span data-aos="zoom-in" data-aos-duration="1500" data-aos-delay="1200" class="work-sans">Putri
+                        pertama dari <?= esc($invitation['bride_father']) ?><br> dan
+                        <?= esc($invitation['bride_mother']) ?></span>
+                </div>
+            </div>
+
+            <div class="wave-stack">
+                <svg class="wave wave-back" viewBox="0 0 390 80" preserveAspectRatio="none">
+                    <path d="
+                                        M0,35
+                                        C40,50 70,55 110,48
+                                        C160,40 190,18 240,22
+                                        C290,26 330,48 390,40
+                                        L390,80
+                                        L0,80
+                                        Z" />
+                </svg>
+
+                <svg class="wave wave-front" viewBox="0 0 390 80" preserveAspectRatio="none">
+                    <path d="
+                                        M0,50
+                                        C45,65 90,68 140,58
+                                        C190,48 230,28 280,30
+                                        C330,32 360,52 390,48
+                                        L390,80
+                                        L0,80
+                                        Z" />
+                </svg>
+            </div>
+        </section>
+
+        <!-- 3. Date Locate -->
+        <section id="date-locate" class="date-locate">
+
+            <div class="text-center content">
+                <h1 class="great-vibes" data-aos="zoom-in-up" data-aos-duration="1500" data-aos-delay="500">Save The
+                    Date
+                </h1>
+
+                <div class="time work-sans" data-aos="zoom-in-up" data-aos-duration="1500" data-aos-delay="600">
+                    <div class="border">
+                        <h1>00</h1>
+                        <p>Hari</p>
+                    </div>
+                    <div class="border">
+                        <h1>00</h1>
+                        <p>Jam</p>
+                    </div>
+                    <div class="border">
+                        <h1>00</h1>
+                        <p>Menit</p>
+                    </div>
+                    <div class="border">
+                        <h1>00</h1>
+                        <p>Detik</p>
+                    </div>
+                </div>
+
+                <div class="akad">
+                    <div class="card">
+                        <img src="../img/pelaminan.png" alt="">
+
+                        <div>
+                            <h1 class="great-vibes" data-aos="zoom-in" data-aos-duration="1000" data-aos-delay="500">
+                                Akad&nbsp;&nbsp;Nikah</h1>
+                            <p class="date" data-aos="zoom-in" data-aos-duration="1000" data-aos-delay="600"><?php
+                                                                                                                $tanggal = strtotime($events['event_date']);
+                                                                                                                echo $hari[date('l', $tanggal)] . ', '
+                                                                                                                    . date('j', $tanggal) . ' '
+                                                                                                                    . $bulan[date('F', $tanggal)] . ' '
+                                                                                                                    . date('Y', $tanggal);
+                                                                                                                ?></p>
+                            <p class="time" data-aos="zoom-in" data-aos-duration="1000" data-aos-delay="700">Pukul :
+                                08:00 WIB</p>
+                            <p class="locate" data-aos="zoom-in" data-aos-duration="1000" data-aos-delay="800">Tempat :
+                                <strong>KEDIAMAN MEMPELAI PRIA</strong><br>Distrik
+                                Shiganshina,<br>
+                                Pulau Paradis
+                            </p>
+                            <div class="save-locate">
+                                <a href="#date-locate" class="btn-save-locate text-center" data-aos="zoom-in"
+                                    data-aos-duration="1000" data-aos-delay="900">Lihat
+                                    Lokasi</a>
+                            </div>
+                        </div>
+
+                        <div class="divider-cont">
+                            <div class="divider" data-aos="zoom-in" data-aos-duration="1000" data-aos-delay="1000">
+                            </div>
+                        </div>
+
+                        <div class="clone">
+                            <h1 class="great-vibes" data-aos="zoom-in" data-aos-duration="1000" data-aos-delay="1100">
+                                Resepsi</h1>
+                            <p class="date" data-aos="zoom-in" data-aos-duration="1000" data-aos-delay="1200">Rabu, 4
+                                November 854</p>
+                            <p class="time" data-aos="zoom-in" data-aos-duration="1000" data-aos-delay="1300">Pukul :
+                                10:00 WIB</p>
+                            <p class="locate" data-aos="zoom-in" data-aos-duration="1000" data-aos-delay="1400">Tempat :
+                                <strong>KEDIAMAN MEMPELAI PRIA</strong><br>Distrik
+                                Shiganshina,<br>
+                                Pulau Paradis
+                            </p>
+                            <div class="save-locate">
+                                <a href="#date-locate" class="btn-save-locate text-center" data-aos="zoom-in"
+                                    data-aos-duration="1000" data-aos-delay="1500">Lihat
+                                    Lokasi</a>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. Gallery -->
+        <section class="gallery">
+            <div class="text-center">
+                <h1 class="great-vibes">Gallery</h1>
+            </div>
+            <div class="gallery-grid">
+                <figure class="gallery-item gallery-item--tall">
+                    <img src="../img/eremika.jpeg" alt="Foto pasangan Eren dan Mikasa">
+                </figure>
+                <figure class="gallery-item">
+                    <img src="../img/erenmikasa.png" alt="Foto Eren dan Mikasa bersama">
+                </figure>
+                <figure class="gallery-item gallery-item--wide">
+                    <img src="../img/eremikamarried1.png" alt="Foto pernikahan Eren dan Mikasa">
+                </figure>
+                <figure class="gallery-item">
+                    <img src="../img/eren.png" alt="Foto pengantin pria">
+                </figure>
+                <figure class="gallery-item gallery-item--tall">
+                    <img src="../img/mikasa.png" alt="Foto pengantin wanita">
+                </figure>
+                <figure class="gallery-item">
+                    <img src="../img/pelaminan.png" alt="Detail pelaminan wedding">
+                </figure>
+            </div>
+        </section>
+
+        <div class="divider-cont">
+            <!-- <div class="divider" data-aos="zoom-in" data-aos-duration="1000" data-aos-delay="1000">
+            </div> -->
+        </div>
+
+        <section class="story">
+            <div class="text-center">
+                <h1 class="great-vibes">Love Story</h1>
+            </div>
+
+            <img src="../img/eremika.jpeg" alt="">
+
+            <div class="story-timeline">
+                <div class="story-item">
+                    <div class="story-dot"></div>
+                    <div class="story-card">
+                        <span class="story-year">2013</span>
+                        <h3>Awal Cerita</h3>
+                        <p>Perjalanan kami dimulai dari sebuah pertemuan yang sederhana, namun penuh makna. Saat itu,
+                            hati kami sama-sama merasa ada sesuatu yang istimewa.</p>
+                    </div>
+                </div>
+
+                <div class="story-item">
+                    <div class="story-dot"></div>
+                    <div class="story-card">
+                        <span class="story-year">2023</span>
+                        <h3>Lamaran</h3>
+                        <p>Seiring waktu, kami belajar saling memahami, tertawa bersama, dan menghadapi segala hal
+                            dengan satu tujuan: saling menjaga.</p>
+                    </div>
+                </div>
+
+                <div class="story-item">
+                    <div class="story-dot"></div>
+                    <div class="story-card">
+                        <span class="story-year">2024</span>
+                        <h3>Pernikahan</h3>
+                        <p>Hari itu kami memutuskan untuk menulis babak baru dalam hidup, dengan cinta yang lebih kuat
+                            dan komitmen yang lebih tulus.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="gift">
+            <div class="text-center card">
+                <h1 class="great-vibes">
+                    Amplop Digital</h1>
+                <p class="work-sans"><i>Doa restu Anda merupakan karunia yang sangat berarti bagi kami, dan jika memberi
+                        adalah ungkapan
+                        tanda kasih, Anda dapat
+                        memberi kado secara cashless.</i></p>
+                <button class="btn" id="toggleBtn"><i class="bi bi-gift-fill"></i> Kirim Hadiah</button>
+            </div>
+
+            <div class="accordion-content" id="content">
+                <div class="accordion-inner">
+                    <div class="gift-cards">
+                        <div class="card-1">
+                            123456
+                        </div>
+                        <div class="card-2">
+                            123456
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="message">
+            <div class="message-inner">
+                <div class="text-center message-heading">
+                    <!-- <span class="wedding-text work-sans">BUKU TAMU</span> -->
+                    <h1 class="great-vibes">Kirim Pesan</h1>
+                    <p class="work-sans">Tinggalkan doa dan pesan untuk kedua mempelai.</p>
+                </div>
+
+                <form id="messageForm" class="message-form">
+                    <label class="work-sans" for="messageName">Nama</label>
+                    <input id="messageName" name="name" type="text" maxlength="60" placeholder="Nama Anda" required>
+                    <label class="work-sans" for="messageText">Pesan</label>
+                    <textarea id="messageText" name="message" maxlength="500" rows="4"
+                        placeholder="Tulis ucapan dan doa Anda..." required></textarea>
+                    <span class="attendance-label work-sans">Konfirmasi kehadiran</span>
+                    <select class="attendance-select work-sans" name="attendance" required>
+                        <option value="" selected disabled>Pilih konfirmasi kehadiran</option>
+                        <option value="hadir">Hadir</option>
+                        <option value="tidak_hadir">Tidak hadir</option>
+                    </select>
+                    <button class="message-submit work-sans" type="submit"><i class="bi bi-send-fill"></i> Kirim
+                        Pesan</button>
+                    <p id="messageStatus" class="message-status work-sans" role="status" aria-live="polite"></p>
+                </form>
+
+                <div id="messageList" class="message-list" aria-live="polite">
+                    <p class="message-empty work-sans">Memuat pesan...</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="closing"></section>
+
+        <footer></footer>
+
+        <audio id="weddingMusic" loop>
+            <source src="../songs/suratcintauntukstarlaa.wav" type="audio/mp3">
+        </audio>
+
+    </div>
+
+    <script src="<?= base_url('js/undangan-1/undangan1.js') ?>"></script>
+    <script src="<?= base_url('js/tamuLogic.js') ?>"></script>
+    <script type="module" src="../js/messageFirebase.js"></script>
+
+    <!-- AOS -->
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+        AOS.init();
+    </script>
+
+</body>
+
+</html>

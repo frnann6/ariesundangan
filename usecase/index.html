@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dokumentasi Sistem | Undangan Digital</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="site-header">
+        <div class="header-inner">
+            <a class="brand" href="#top" aria-label="Dokumentasi Undangan Digital">
+                <span class="brand-mark">✦</span>
+                <span>UNDANGAN DIGITAL <small>system docs</small></span>
+            </a>
+            <nav class="nav-links" aria-label="Navigasi dokumentasi">
+                <a href="#use-case">Use case</a>
+                <a href="#database">Database</a>
+                <a href="#relations">Relasi</a>
+            </nav>
+        </div>
+    </header>
+
+    <main id="top">
+        <section class="hero shell">
+            <div class="hero-copy">
+                <p class="eyebrow">ARSITEKTUR APLIKASI · MIGRATIONS</p>
+                <h1>Peta sistem<br><em>undangan digital.</em></h1>
+                <p class="hero-text">Gambaran aktor, alur utama, tabel, dan relasi yang dibangun dari migration CodeIgniter 4.</p>
+            </div>
+            <div class="hero-note">
+                <span class="note-number">07</span>
+                <span class="note-label">tabel dibentuk<br>dari migrations</span>
+            </div>
+        </section>
+
+        <section class="section shell" id="use-case">
+            <div class="section-heading">
+                <div>
+                    <p class="eyebrow">01 / USE CASE DIAGRAM</p>
+                    <h2>Siapa melakukan apa?</h2>
+                </div>
+                <p class="section-intro">Sistem mempertemukan pemilik undangan dengan tamu yang membaca dan berinteraksi pada halaman undangan.</p>
+            </div>
+
+            <div class="usecase-board" role="img" aria-label="Use case diagram aplikasi undangan digital">
+                <div class="actor actor-owner">
+                    <span class="actor-icon">♙</span>
+                    <strong>Pemilik Undangan</strong>
+                    <small>admin / user</small>
+                </div>
+
+                <div class="system-boundary">
+                    <div class="boundary-label">SISTEM UNDANGAN DIGITAL</div>
+                    <div class="usecases owner-cases">
+                        <div class="usecase">Kelola profil<br>mempelai</div>
+                        <div class="usecase">Kelola detail<br>undangan</div>
+                        <div class="usecase">Kelola acara</div>
+                        <div class="usecase">Kelola galeri</div>
+                        <div class="usecase">Kelola cerita<br>perjalanan</div>
+                        <div class="usecase">Kelola hadiah /<br>rekening</div>
+                        <div class="usecase">Melihat pesan<br>dan RSVP</div>
+                    </div>
+                    <div class="usecases guest-cases">
+                        <div class="usecase">Buka undangan<br>melalui slug</div>
+                        <div class="usecase">Lihat acara,<br>galeri &amp; cerita</div>
+                        <div class="usecase">Kirim ucapan</div>
+                        <div class="usecase">Konfirmasi<br>kehadiran</div>
+                    </div>
+                </div>
+
+                <div class="actor actor-guest">
+                    <span class="actor-icon">♙</span>
+                    <strong>Tamu</strong>
+                    <small>pengunjung undangan</small>
+                </div>
+                <div class="connector connector-owner" aria-hidden="true"></div>
+                <div class="connector connector-guest" aria-hidden="true"></div>
+            </div>
+
+            <div class="legend">
+                <span><i class="legend-actor"></i> Aktor</span>
+                <span><i class="legend-case"></i> Use case</span>
+                <span><i class="legend-line"></i> Interaksi</span>
+            </div>
+        </section>
+
+        <section class="section database-section" id="database">
+            <div class="shell">
+                <div class="section-heading">
+                    <div>
+                        <p class="eyebrow">02 / ENTITY RELATIONSHIP DIAGRAM</p>
+                        <h2>Data yang menggerakkan sistem.</h2>
+                    </div>
+                    <p class="section-intro">Satu pengguna dapat memiliki banyak undangan. Setiap undangan menjadi pusat bagi data acara, konten, hadiah, dan pesan tamu.</p>
+                </div>
+
+                <div class="erd-board" role="img" aria-label="Entity relationship diagram database undangan digital">
+                    <div class="entity entity-users">
+                        <div class="entity-head"><span>01</span><strong>users</strong></div>
+                        <div class="entity-body"><b>🔑 id</b><span>name</span><span>email <sup>unique</sup></span><span>role</span><span>is_active</span></div>
+                    </div>
+                    <div class="entity entity-invitations">
+                        <div class="entity-head"><span>02</span><strong>invitations</strong></div>
+                        <div class="entity-body"><b>🔑 id</b><b>↗ user_id</b><span>slug <sup>unique</sup></span><span>groom_name · bride_name</span><span>cover_photo · music</span><span>expires_at · is_active</span></div>
+                    </div>
+                    <div class="entity entity-events">
+                        <div class="entity-head"><span>03</span><strong>invitation_events</strong></div>
+                        <div class="entity-body"><b>🔑 id</b><b>↗ invitation_id</b><span>name · event_date</span><span>start_time · end_time</span><span>venue · address</span></div>
+                    </div>
+                    <div class="entity entity-galleries">
+                        <div class="entity-head"><span>04</span><strong>invitation_galleries</strong></div>
+                        <div class="entity-body"><b>🔑 id</b><b>↗ invitation_id</b><span>image</span><span>caption</span><span>sort_order</span></div>
+                    </div>
+                    <div class="entity entity-stories">
+                        <div class="entity-head"><span>05</span><strong>invitation_stories</strong></div>
+                        <div class="entity-body"><b>🔑 id</b><b>↗ invitation_id</b><span>year · title</span><span>description</span><span>sort_order</span></div>
+                    </div>
+                    <div class="entity entity-gifts">
+                        <div class="entity-head"><span>06</span><strong>invitation_gifts</strong></div>
+                        <div class="entity-body"><b>🔑 id</b><b>↗ invitation_id</b><span>bank_name</span><span>account_number</span><span>account_name · type</span></div>
+                    </div>
+                    <div class="entity entity-messages">
+                        <div class="entity-head"><span>07</span><strong>invitation_messages</strong></div>
+                        <div class="entity-body"><b>🔑 id</b><b>↗ invitation_id</b><span>name</span><span>message</span><span>attendance</span></div>
+                    </div>
+                    <div class="erd-line line-user-invitation"><span>1</span><b>n</b></div>
+                    <div class="erd-line line-invitation-children"><span>1</span><b>n</b></div>
+                </div>
+
+                <div class="erd-legend">
+                    <span><b>🔑</b> Primary key</span>
+                    <span><b>↗</b> Foreign key</span>
+                    <span><b>1 — n</b> One to many</span>
+                </div>
+            </div>
+        </section>
+
+        <section class="section shell" id="relations">
+            <div class="section-heading compact-heading">
+                <div>
+                    <p class="eyebrow">03 / RELATION MAP</p>
+                    <h2>Aturan relasi.</h2>
+                </div>
+                <p class="section-intro">Seluruh child record mengikuti siklus hidup undangannya.</p>
+            </div>
+            <div class="relation-grid">
+                <article class="relation-card relation-primary"><span class="relation-count">01</span><h3>users → invitations</h3><p>Satu user dapat membuat banyak undangan melalui <code>user_id</code>.</p></article>
+                <article class="relation-card"><span class="relation-count">02</span><h3>invitations → konten</h3><p>Event, galeri, story, hadiah, dan pesan terhubung melalui <code>invitation_id</code>.</p></article>
+                <article class="relation-card"><span class="relation-count">03</span><h3>Cascade aktif</h3><p><code>ON DELETE CASCADE</code> dan <code>ON UPDATE CASCADE</code> diterapkan pada semua foreign key.</p></article>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer shell">
+        <span>Dokumentasi struktur data</span>
+        <span>CodeIgniter 4 · 2026</span>
+    </footer>
+</body>
+</html>
