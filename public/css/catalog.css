@@ -1,0 +1,221 @@
+.catalog-heading-centered {
+    display: block;
+    margin-bottom: 35px;
+    text-align: center;
+}
+
+.catalog-heading-centered .section-copy {
+    margin: 18px auto 0;
+}
+
+.catalog-filters {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin: 0 auto 34px;
+}
+
+.catalog-filter {
+    padding: 9px 22px;
+    border: 1px solid rgba(36, 48, 45, .4);
+    border-radius: 999px;
+    color: var(--ink);
+    font-size: 11px;
+    text-decoration: none;
+    transition: background .25s ease, color .25s ease;
+}
+
+.catalog-filter:hover,
+.catalog-filter.active {
+    background: var(--ink);
+    color: #fff;
+}
+
+.catalog-collection-title {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 24px;
+    padding: 13px 18px;
+    background: var(--ink);
+    color: #fff;
+    font: 500 17px var(--serif);
+}
+
+.catalog-collection-title i {
+    color: #c8dbc8;
+    font-size: 14px;
+}
+
+.catalog-grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 18px;
+}
+
+.catalog-preview {
+    position: relative;
+    height: 295px;
+    background: transparent;
+}
+
+.preview-badge {
+    position: absolute;
+    top: 14px;
+    left: 14px;
+    z-index: 2;
+    display: inline-flex;
+    align-items: center;
+    padding: 6px 12px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, .92);
+    color: var(--ink);
+    font-size: 11px;
+    font-weight: 700;
+    line-height: 1.4;
+    letter-spacing: .04em;
+    box-shadow: 0 4px 12px rgba(36, 48, 45, .12);
+    pointer-events: none;
+}
+
+.catalog-preview img {
+    display: block;
+    object-fit: cover;
+}
+
+.catalog-info {
+    padding: 17px 4px 11px;
+}
+
+.catalog-info h3 {
+    font-size: 21px;
+    margin: 6px 0 4px;
+}
+
+.catalog-info p {
+    min-height: 42px;
+    font-size: 12px;
+    line-height: 1.55;
+}
+
+.catalog-action {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 7px;
+    color: var(--ink);
+    font-size: 11px;
+    font-weight: 700;
+}
+
+.catalog-card {
+    display: block;
+    overflow: hidden;
+    border: 1px solid rgba(36, 48, 45, .08);
+    border-radius: 18px;
+    background: rgba(255, 255, 255, .92);
+    box-shadow: 0 12px 28px rgba(48, 66, 56, .12);
+    transition: transform .25s ease;
+}
+
+.catalog-card:hover {
+    transform: translateY(-5px);
+}
+
+.catalog-card:hover .preview-overlay {
+    opacity: 1;
+}
+
+.catalog-card .preview-overlay {
+    opacity: 0;
+}
+
+.catalog-card .preview-overlay span {
+    font-size: 11px;
+}
+
+.catalog-card .catalog-info {
+    min-height: 154px;
+    padding: 18px 16px 20px;
+    text-align: center;
+}
+
+.catalog-card .catalog-info > span:first-child {
+    color: #78847e;
+    font-size: 10px;
+    letter-spacing: .12em;
+}
+
+.catalog-card .catalog-info h3 {
+    margin: 7px 0 4px;
+    color: var(--ink);
+    font-size: 19px;
+}
+
+.catalog-card .catalog-info p {
+    min-height: 38px;
+    margin-bottom: 12px;
+    color: #7a8580;
+    font-size: 11px;
+}
+
+.catalog-card .catalog-action {
+    justify-content: center;
+    min-width: 126px;
+    margin-top: 0;
+    padding: 8px 15px;
+    border-radius: 999px;
+    background: var(--ink);
+    color: #fff;
+    font-size: 11px;
+    font-weight: 600;
+    transition: background .25s ease, transform .25s ease;
+}
+
+.catalog-card:hover .catalog-action {
+    background: #6f8c78;
+    transform: translateY(-1px);
+}
+
+@media (max-width: 980px) {
+    .catalog-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .catalog-preview {
+        height: 340px;
+    }
+}
+
+@media (max-width: 760px) {
+    .catalog-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .catalog-preview {
+        height: 250px;
+    }
+
+    .catalog-info p {
+        min-height: auto;
+    }
+
+    .catalog-filter {
+        padding: 8px 14px;
+    }
+}
+
+@media (max-width: 520px) {
+    .catalog-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .catalog-preview {
+        height: 330px;
+    }
+
+    .catalog-filter {
+        flex: 1 1 42%;
+        text-align: center;
+    }
+}
