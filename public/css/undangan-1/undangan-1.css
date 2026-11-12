@@ -553,9 +553,14 @@ body {
 /* 4. Gallery */
 
 .invitation .gallery {
-    background-image: url("../../img/undangan-1/main-bg.jpeg");
+    background-image: linear-gradient(to bottom,
+            rgba(255, 255, 255, 0) 0%,
+            rgba(255, 255, 255, 0) 70%,
+            rgba(255, 255, 255, 0.85) 90%,
+            #ffffff 100%), url("../../img/undangan-1/main-bg.jpeg");
     background-size: cover;
-    padding: 50px 18px 20px 18px;
+    background-position: center;
+    padding: 50px 18px 40px 18px;
 }
 
 .invitation .gallery h1 {
@@ -601,10 +606,13 @@ body {
 .invitation .story {
     background-image: linear-gradient(to bottom,
             #ffffff 0%,
-            rgba(255, 255, 255, 0) 10%,
-            rgba(255, 255, 255, 0) 30%,
-            rgba(255, 255, 255, 0) 55%), url("../../img/undangan-1/main-bg.jpeg");
-    padding: 20px 18px 60px;
+            rgba(255, 255, 255, 0.75) 12%,
+            rgba(255, 255, 255, 0) 35%,
+            rgba(255, 255, 255, 0) 60%), url("../../img/undangan-1/main-bg.jpeg");
+    background-size: cover;
+    background-position: center;
+    padding: 10px 18px 60px;
+    margin-top: -1px;
 }
 
 .invitation .story h1 {
@@ -738,33 +746,100 @@ body {
 }
 
 .accordion-content .accordion-inner .gift-cards {
-    padding-bottom: 50px;
+    padding: 10px 18px 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
 }
 
-.accordion-content .accordion-inner .gift-cards .card-1 {
-    background-image: url("../../img/undangan-1/cover.png");
-    background-size: cover;
-    width: 280px;
-    height: 180px;
-    border-radius: 10px;
-
-    text-align: center;
-    margin: auto;
-    margin-top: 30px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+.gift-item {
+    background: #ffffff;
+    border: 1px solid rgba(152, 106, 82, 0.14);
+    border-radius: 16px;
+    padding: 16px 16px 14px;
+    box-shadow: 0 10px 24px rgba(109, 74, 58, 0.12);
+    text-align: left;
 }
 
-.accordion-content .accordion-inner .gift-cards .card-2 {
-    background-image: url("../../img/undangan-1/cover.png");
-    background-size: cover;
-    width: 280px;
-    height: 180px;
-    border-radius: 10px;
+.gift-item-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 14px;
+}
 
+.gift-item-info {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    min-width: 0;
+    order: 1;
+}
+
+.gift-logo {
+    max-height: 26px;
+    max-width: 90px;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    flex-shrink: 0;
+    order: 2;
+}
+
+.gift-provider {
+    font-size: 14px;
+    font-weight: 700;
+    color: #6d4a3a;
+}
+
+.gift-account-name {
+    font-size: 12px;
+    color: #7a6a60;
+}
+
+.gift-account-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    background: #fbf7f1;
+    border: 1px solid #efe3d6;
+    border-radius: 12px;
+    padding: 10px 12px;
+}
+
+.gift-account-number {
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    color: #4d3930;
+    word-break: break-all;
+}
+
+.gift-copy-btn {
+    flex-shrink: 0;
+    border: 0;
+    border-radius: 8px;
+    padding: 8px 12px;
+    background: #986A52;
+    color: #fff;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.gift-copy-btn.copied {
+    background: #6e8b63;
+}
+
+.gift-empty {
+    color: rgba(255, 255, 255, 0.95);
     text-align: center;
-    margin: auto;
-    margin-top: 15px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    padding: 20px 18px 36px;
+    margin: 0;
+    font-size: 13px;
 }
 
 /* 7. Messages */
@@ -900,22 +975,27 @@ body {
 
 .message-card {
     background: #fff;
-    border-left: 3px solid #986A52;
+    border: 0;
+    border-left: 3px solid #986a52;
     border-radius: 6px;
     box-shadow: 0 5px 16px rgba(109, 74, 58, 0.07);
-    padding: 14px 15px;
+    padding: 12px 14px;
+    font-family: "Work Sans", sans-serif;
 }
 
 .message-card-header {
-    align-items: center;
+    align-items: flex-start;
     display: flex;
     justify-content: space-between;
     gap: 10px;
+    margin-bottom: 0;
 }
 
 .message-card-header strong {
     color: #6d4a3a;
     font-size: 13px;
+    font-weight: 700;
+    line-height: 1.2;
 }
 
 .message-author-info {
@@ -925,8 +1005,10 @@ body {
 }
 
 .message-attendance {
-    font: 11px "Work Sans", sans-serif;
+    color: #a47768;
+    font-size: 11px;
     font-weight: 400;
+    line-height: 1.2;
 }
 
 .message-attendance.is-present {
@@ -943,39 +1025,104 @@ body {
     white-space: nowrap;
 }
 
-.message-card>p {
+.message-body {
     color: #5f514a;
     font-size: 13px;
     line-height: 1.55;
-    margin: 8px 0 10px;
+    margin: 8px 0 0;
     white-space: pre-wrap;
     overflow-wrap: anywhere;
 }
 
 .reply-toggle {
     background: transparent;
-    color: #986A52;
-    padding: 2px 0;
+    border: none;
+    color: #986a52;
+    font-size: 12px;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 0;
+    margin-top: 10px;
+    cursor: pointer;
+    line-height: 1;
+}
+
+.reply-toggle i {
+    font-size: 13px;
+    line-height: 1;
+    color: #986a52;
+}
+
+.reply-toggle span {
+    color: #986a52;
 }
 
 .reply-form {
     display: flex;
     flex-direction: column;
-    gap: 7px;
-    margin-top: 12px;
+    gap: 8px;
+    margin-top: 16px;
+    padding: 0;
 }
 
 .reply-form .message-submit {
     align-self: flex-start;
-    margin-top: 0;
-    padding: 8px 12px;
+    margin-top: 4px;
+    padding: 8px 16px;
+    font-size: 13px;
+}
+
+.message-replies {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin: 10px 0 0 12px;
+}
+
+.message-replies:empty {
+    display: none;
 }
 
 .message-reply {
     background: #fbf7f1;
+    border: 0;
     border-left: 2px solid #c99d7b;
+    border-radius: 6px;
+    padding: 12px 14px;
+    margin: 0;
     box-shadow: none;
-    margin: 10px 0 0 12px;
+}
+
+.message-reply-header {
+    align-items: flex-start;
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    margin-bottom: 6px;
+}
+
+.message-reply-header strong {
+    color: #6d4a3a;
+    font-size: 13px;
+    font-weight: 700;
+    line-height: 1.2;
+}
+
+.message-reply-header time {
+    color: #9b8679;
+    font-size: 10px;
+    white-space: nowrap;
+}
+
+.message-reply-body {
+    color: #5f514a;
+    font-size: 13px;
+    line-height: 1.55;
+    margin: 8px 0 0;
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
 }
 
 .message-empty {

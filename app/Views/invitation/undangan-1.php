@@ -1,37 +1,3 @@
-<?php
-$hari = [
-    'Sunday' => 'Minggu',
-    'Monday' => 'Senin',
-    'Tuesday' => 'Selasa',
-    'Wednesday' => 'Rabu',
-    'Thursday' => 'Kamis',
-    'Friday' => 'Jumat',
-    'Saturday' => 'Sabtu'
-];
-
-$bulan = [
-    'January' => 'Januari',
-    'February' => 'Februari',
-    'March' => 'Maret',
-    'April' => 'April',
-    'May' => 'Mei',
-    'June' => 'Juni',
-    'July' => 'Juli',
-    'August' => 'Agustus',
-    'September' => 'September',
-    'October' => 'Oktober',
-    'November' => 'November',
-    'December' => 'Desember'
-];
-
-// $tanggal = strtotime($events['event_date']);
-
-// echo $hari[date('l', $tanggal)] . ', '
-//     . date('j', $tanggal) . ' '
-//     . $bulan[date('F', $tanggal)] . ' '
-//     . date('Y', $tanggal);
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -117,13 +83,8 @@ $bulan = [
                 class="paragph text-center work-sans animate__animated animate__zoomIn animate__delay-1s work-sans">Kami
                 berharap Anda menjadi
                 bagian dari hari istimewa kami.</span>
-            <p class="date text-center work-sans animate__animated animate__zoomIn animate__delay-1s"><?php
-                                                                                                        $tanggal = strtotime($events['event_date']);
-                                                                                                        echo $hari[date('l', $tanggal)] . ', '
-                                                                                                            . date('j', $tanggal) . ' '
-                                                                                                            . $bulan[date('F', $tanggal)] . ' '
-                                                                                                            . date('Y', $tanggal);
-                                                                                                        ?></p>
+            <p class="date text-center work-sans animate__animated animate__zoomIn animate__delay-1s">
+                <?= esc($formattedMainEventDate) ?></p>
             <a href="#date-locate"
                 class="btn-save-date text-center animate__animated animate__zoomIn animate__delay-1s">Save The
                 Date</a>
@@ -133,16 +94,8 @@ $bulan = [
         <section class="opening-couple">
             <div class="card">
                 <div class="container text-center">
-                    <p data-aos="zoom-in-up" data-aos-duration="1500" data-aos-delay="600" class="work-sans"><i>“Dan
-                            di
-                            antara tanda-tanda (kebesaran)-Nya ialah Dia menciptakan
-                            pasangan-pasangan untukmu dari
-                            jenismu sendiri, agar
-                            kamu cenderung dan merasa tenteram kepadanya, dan Dia menjadikan di antaramu rasa kasih dan
-                            sayang.
-                            Sesungguhnya pada
-                            yang demikian itu benar-benar terdapat tanda-tanda (kebesaran Allah) bagi kaum yang
-                            berpikir.”
+                    <p data-aos="zoom-in-up" data-aos-duration="1500" data-aos-delay="600" class="work-sans"><i>
+                            <?= esc($invitation['quote']) ?>
                             <br><br>
                             (Qs. Ar-Rum : 21)</i>
                     </p>
@@ -165,7 +118,7 @@ $bulan = [
 
                 <div>
                     <!-- PENGANTIN PRIA -->
-                    <img data-aos="zoom-in" data-aos-duration="1500" data-aos-delay="1000" src="../img/eren.png" alt="">
+                    <img data-aos="zoom-in" data-aos-duration="1500" data-aos-delay="1000" src="<?= base_url('img/couple/' . $invitation['slug'] . '/' . $invitation['groom_photo']) ?>" alt="">
                     <h1 data-aos="zoom-in" data-aos-duration="1500" data-aos-delay="1100" class="great-vibes">
                         <?= esc($invitation['groom_name']) ?>
                     </h1>
@@ -173,14 +126,14 @@ $bulan = [
                         pertama dari <?= esc($invitation['groom_father']) ?> <br> dan
                         <?= esc($invitation['groom_mother']) ?></span>
 
-                    <h1 data-aos="zoom-in" data-aos-duration="1500" data-aos-delay="1200" class="great-vibes and">&</h1>
+                    <h1 data-aos="zoom-in" data-aos-duration="1500" data-aos-delay="1300" class="great-vibes and">&</h1>
 
                     <!-- PENGANTIN WANITA -->
-                    <img data-aos="zoom-in" data-aos-duration="1500" data-aos-delay="1200" src="../img/mikasa.png"
+                    <img data-aos="zoom-in" data-aos-duration="1500" data-aos-delay="1400" src="<?= base_url('img/couple/' . $invitation['slug'] . '/' . $invitation['bride_photo']) ?>""
                         alt="">
-                    <h1 data-aos="zoom-in" data-aos-duration="1500" data-aos-delay="1200" class="great-vibes">
-                        <?= esc($invitation['bride_name']) ?></h1>
-                    <span data-aos="zoom-in" data-aos-duration="1500" data-aos-delay="1200" class="work-sans">Putri
+                    <h1 data-aos="zoom-in" data-aos-duration="1500" data-aos-delay="1500" class="great-vibes">
+                    <?= esc($invitation['bride_name']) ?></h1>
+                    <span data-aos="zoom-in" data-aos-duration="1500" data-aos-delay="1600" class="work-sans">Putri
                         pertama dari <?= esc($invitation['bride_father']) ?><br> dan
                         <?= esc($invitation['bride_mother']) ?></span>
                 </div>
@@ -219,7 +172,8 @@ $bulan = [
                     Date
                 </h1>
 
-                <div class="time work-sans" data-aos="zoom-in-up" data-aos-duration="1500" data-aos-delay="600">
+                <div class="time work-sans" data-countdown-target="<?= esc($countdownTarget, 'attr') ?>"
+                    data-aos="zoom-in-up" data-aos-duration="1500" data-aos-delay="600">
                     <div class="border">
                         <h1>00</h1>
                         <p>Hari</p>
@@ -240,56 +194,82 @@ $bulan = [
 
                 <div class="akad">
                     <div class="card">
-                        <img src="../img/pelaminan.png" alt="">
+                        <?php if (!$hasEvent): ?>
+                            <p class="work-sans">Informasi acara belum tersedia.</p>
+                        <?php else: ?>
+                            <?php if ($eventPhotoUrl): ?>
+                                <img src="<?= esc($eventPhotoUrl, 'attr') ?>" alt="Foto acara">
+                            <?php endif; ?>
 
-                        <div>
-                            <h1 class="great-vibes" data-aos="zoom-in" data-aos-duration="1000" data-aos-delay="500">
-                                Akad&nbsp;&nbsp;Nikah</h1>
-                            <p class="date" data-aos="zoom-in" data-aos-duration="1000" data-aos-delay="600"><?php
-                                                                                                                $tanggal = strtotime($events['event_date']);
-                                                                                                                echo $hari[date('l', $tanggal)] . ', '
-                                                                                                                    . date('j', $tanggal) . ' '
-                                                                                                                    . $bulan[date('F', $tanggal)] . ' '
-                                                                                                                    . date('Y', $tanggal);
-                                                                                                                ?></p>
-                            <p class="time" data-aos="zoom-in" data-aos-duration="1000" data-aos-delay="700">Pukul :
-                                08:00 WIB</p>
-                            <p class="locate" data-aos="zoom-in" data-aos-duration="1000" data-aos-delay="800">Tempat :
-                                <strong>KEDIAMAN MEMPELAI PRIA</strong><br>Distrik
-                                Shiganshina,<br>
-                                Pulau Paradis
-                            </p>
-                            <div class="save-locate">
-                                <a href="#date-locate" class="btn-save-locate text-center" data-aos="zoom-in"
-                                    data-aos-duration="1000" data-aos-delay="900">Lihat
-                                    Lokasi</a>
+                            <div>
+                                <h1 class="great-vibes" data-aos="zoom-in" data-aos-duration="1000" data-aos-delay="500">
+                                    <?= esc($akad['title']) ?>
+                                </h1>
+                                <?php if ($akad['date'] !== ''): ?>
+                                    <p class="date" data-aos="zoom-in" data-aos-duration="1000" data-aos-delay="600">
+                                        <?= esc($akad['date']) ?>
+                                    </p>
+                                <?php endif; ?>
+                                <?php if ($akad['time'] !== ''): ?>
+                                    <p class="time" data-aos="zoom-in" data-aos-duration="1000" data-aos-delay="700">
+                                        Pukul: <?= esc($akad['time']) ?> WIB
+                                    </p>
+                                <?php endif; ?>
+                                <p class="locate" data-aos="zoom-in" data-aos-duration="1000" data-aos-delay="800">
+                                    Tempat: <strong><?= esc($akad['venue']) ?></strong>
+                                    <?php if (!empty($akad['address'])): ?>
+                                        <br><?= nl2br(esc($akad['address'])) ?>
+                                    <?php endif; ?>
+                                </p>
+                                <?php if ($akad['maps_url'] !== ''): ?>
+                                    <div class="save-locate">
+                                        <a href="<?= esc($akad['maps_url'], 'attr') ?>" target="_blank"
+                                            rel="noopener noreferrer" class="btn-save-locate text-center" data-aos="zoom-in" data-aos-duration="1000" data-aos-delay="900">
+                                            Lihat Lokasi
+                                        </a>
+                                    </div>
+                                <?php endif; ?>
                             </div>
-                        </div>
 
-                        <div class="divider-cont">
-                            <div class="divider" data-aos="zoom-in" data-aos-duration="1000" data-aos-delay="1000">
+                            <div class="divider-cont">
+                                <div class="divider" data-aos="zoom-in" data-aos-duration="1000" data-aos-delay="1000">
+                                </div>
                             </div>
-                        </div>
 
-                        <div class="clone">
-                            <h1 class="great-vibes" data-aos="zoom-in" data-aos-duration="1000" data-aos-delay="1100">
-                                Resepsi</h1>
-                            <p class="date" data-aos="zoom-in" data-aos-duration="1000" data-aos-delay="1200">Rabu, 4
-                                November 854</p>
-                            <p class="time" data-aos="zoom-in" data-aos-duration="1000" data-aos-delay="1300">Pukul :
-                                10:00 WIB</p>
-                            <p class="locate" data-aos="zoom-in" data-aos-duration="1000" data-aos-delay="1400">Tempat :
-                                <strong>KEDIAMAN MEMPELAI PRIA</strong><br>Distrik
-                                Shiganshina,<br>
-                                Pulau Paradis
-                            </p>
-                            <div class="save-locate">
-                                <a href="#date-locate" class="btn-save-locate text-center" data-aos="zoom-in"
-                                    data-aos-duration="1000" data-aos-delay="1500">Lihat
-                                    Lokasi</a>
+                            <div class="clone">
+                                <h1 class="great-vibes" data-aos="zoom-in" data-aos-duration="1000" data-aos-delay="1100">
+                                    <?= esc($reception['title']) ?>
+                                </h1>
+                                <?php if (!$reception['has_data']): ?>
+                                    <p class="work-sans">Informasi resepsi belum tersedia.</p>
+                                <?php else: ?>
+                                    <?php if ($reception['date'] !== ''): ?>
+                                        <p class="date" data-aos="zoom-in" data-aos-duration="1000" data-aos-delay="1200">
+                                            <?= esc($reception['date']) ?>
+                                        </p>
+                                    <?php endif; ?>
+                                    <?php if ($reception['time'] !== ''): ?>
+                                        <p class="time" data-aos="zoom-in" data-aos-duration="1000" data-aos-delay="1300">
+                                            Pukul: <?= esc($reception['time']) ?> WIB
+                                        </p>
+                                    <?php endif; ?>
+                                    <p class="locate" data-aos="zoom-in" data-aos-duration="1000" data-aos-delay="1400">
+                                        Tempat: <strong><?= esc($reception['venue']) ?></strong>
+                                        <?php if (!empty($reception['address'])): ?>
+                                            <br><?= nl2br(esc($reception['address'])) ?>
+                                        <?php endif; ?>
+                                    </p>
+                                    <?php if ($reception['maps_url'] !== ''): ?>
+                                        <div class="save-locate">
+                                            <a href="<?= esc($reception['maps_url'], 'attr') ?>" target="_blank"
+                                                rel="noopener noreferrer" class="btn-save-locate text-center" data-aos="zoom-in" data-aos-duration="1000" data-aos-delay="1500">
+                                                Lihat Lokasi
+                                            </a>
+                                        </div>
+                                    <?php endif; ?>
+                                <?php endif; ?>
                             </div>
-                        </div>
-
+                        <?php endif; ?>
                     </div>
                 </div>
             </div>
@@ -301,24 +281,16 @@ $bulan = [
                 <h1 class="great-vibes">Gallery</h1>
             </div>
             <div class="gallery-grid">
-                <figure class="gallery-item gallery-item--tall">
-                    <img src="../img/eremika.jpeg" alt="Foto pasangan Eren dan Mikasa">
-                </figure>
-                <figure class="gallery-item">
-                    <img src="../img/erenmikasa.png" alt="Foto Eren dan Mikasa bersama">
-                </figure>
-                <figure class="gallery-item gallery-item--wide">
-                    <img src="../img/eremikamarried1.png" alt="Foto pernikahan Eren dan Mikasa">
-                </figure>
-                <figure class="gallery-item">
-                    <img src="../img/eren.png" alt="Foto pengantin pria">
-                </figure>
-                <figure class="gallery-item gallery-item--tall">
-                    <img src="../img/mikasa.png" alt="Foto pengantin wanita">
-                </figure>
-                <figure class="gallery-item">
-                    <img src="../img/pelaminan.png" alt="Detail pelaminan wedding">
-                </figure>
+                <?php if (empty($galleryImages)): ?>
+                    <p class="work-sans">Belum ada foto galeri.</p>
+                <?php else: ?>
+                    <?php foreach ($galleryImages as $galleryImage): ?>
+                        <figure class="gallery-item <?= esc($galleryImage['layout_class'], 'attr') ?>">
+                            <img src="<?= esc($galleryImage['url'], 'attr') ?>" alt="<?= esc($galleryImage['caption'], 'attr') ?>"
+                                loading="lazy">
+                        </figure>
+                    <?php endforeach; ?>
+                <?php endif; ?>
             </div>
         </section>
 
@@ -332,62 +304,67 @@ $bulan = [
                 <h1 class="great-vibes">Love Story</h1>
             </div>
 
-            <img src="../img/eremika.jpeg" alt="">
+            <?php if ($storyPhotoUrl): ?>
+                <img src="<?= esc($storyPhotoUrl, 'attr') ?>" alt="Foto kisah pasangan" loading="lazy">
+            <?php endif; ?>
 
             <div class="story-timeline">
-                <div class="story-item">
-                    <div class="story-dot"></div>
-                    <div class="story-card">
-                        <span class="story-year">2013</span>
-                        <h3>Awal Cerita</h3>
-                        <p>Perjalanan kami dimulai dari sebuah pertemuan yang sederhana, namun penuh makna. Saat itu,
-                            hati kami sama-sama merasa ada sesuatu yang istimewa.</p>
-                    </div>
-                </div>
-
-                <div class="story-item">
-                    <div class="story-dot"></div>
-                    <div class="story-card">
-                        <span class="story-year">2023</span>
-                        <h3>Lamaran</h3>
-                        <p>Seiring waktu, kami belajar saling memahami, tertawa bersama, dan menghadapi segala hal
-                            dengan satu tujuan: saling menjaga.</p>
-                    </div>
-                </div>
-
-                <div class="story-item">
-                    <div class="story-dot"></div>
-                    <div class="story-card">
-                        <span class="story-year">2024</span>
-                        <h3>Pernikahan</h3>
-                        <p>Hari itu kami memutuskan untuk menulis babak baru dalam hidup, dengan cinta yang lebih kuat
-                            dan komitmen yang lebih tulus.</p>
-                    </div>
-                </div>
+                <?php if (empty($stories)): ?>
+                    <p class="work-sans">Belum ada kisah yang ditambahkan.</p>
+                <?php else: ?>
+                    <?php foreach ($stories as $story): ?>
+                        <div class="story-item">
+                            <div class="story-dot"></div>
+                            <div class="story-card">
+                                <span class="story-year"><?= esc($story['year']) ?></span>
+                                <h3><?= esc($story['title']) ?></h3>
+                                <?php if (!empty($story['description'])): ?>
+                                    <p><?= nl2br(esc($story['description'])) ?></p>
+                                <?php endif; ?>
+                            </div>
+                        </div>
+                    <?php endforeach; ?>
+                <?php endif; ?>
             </div>
         </section>
 
         <section class="gift">
             <div class="text-center card">
-                <h1 class="great-vibes">
-                    Amplop Digital</h1>
+                <h1 class="great-vibes">Amplop Digital</h1>
                 <p class="work-sans"><i>Doa restu Anda merupakan karunia yang sangat berarti bagi kami, dan jika memberi
-                        adalah ungkapan
-                        tanda kasih, Anda dapat
-                        memberi kado secara cashless.</i></p>
-                <button class="btn" id="toggleBtn"><i class="bi bi-gift-fill"></i> Kirim Hadiah</button>
+                        adalah ungkapan tanda kasih, Anda dapat memberi kado secara cashless.</i></p>
+                <?php if (!empty($gifts)): ?>
+                    <button class="btn" id="toggleBtn"><i class="bi bi-gift-fill"></i> Kirim Hadiah</button>
+                <?php endif; ?>
             </div>
 
-            <div class="accordion-content" id="content">
+            <div class="accordion-content<?= !empty($gifts) ? '' : ' active' ?>" id="content">
                 <div class="accordion-inner">
-                    <div class="gift-cards">
-                        <div class="card-1">
-                            123456
+                    <?php if (empty($gifts)): ?>
+                        <p class="gift-empty work-sans">Informasi amplop digital belum tersedia.</p>
+                    <?php else: ?>
+                        <div class="gift-cards">
+                            <?php foreach ($gifts as $gift): ?>
+                                <div class="gift-item">
+                                    <div class="gift-item-top">
+                                        <?php if (!empty($gift['logo_url'])): ?>
+                                            <img class="gift-logo" src="<?= esc($gift['logo_url'], 'attr') ?>" alt="<?= esc($gift['display_name'], 'attr') ?>" loading="lazy" onerror="this.style.display='none'">
+                                        <?php endif; ?>
+                                        <div class="gift-item-info">
+                                            <span class="gift-provider work-sans"><?= esc($gift['display_name']) ?></span>
+                                            <span class="gift-account-name work-sans"><?= esc($gift['account_name']) ?></span>
+                                        </div>
+                                    </div>
+                                    <div class="gift-account-row">
+                                        <span class="gift-account-number work-sans" data-account="<?= esc($gift['account_number'], 'attr') ?>"><?= esc($gift['account_number']) ?></span>
+                                        <button type="button" class="gift-copy-btn work-sans" data-copy="<?= esc($gift['account_number'], 'attr') ?>">
+                                            <i class="bi bi-copy"></i> Salin
+                                        </button>
+                                    </div>
+                                </div>
+                            <?php endforeach; ?>
                         </div>
-                        <div class="card-2">
-                            123456
-                        </div>
-                    </div>
+                    <?php endif; ?>
                 </div>
             </div>
         </section>
@@ -400,7 +377,8 @@ $bulan = [
                     <p class="work-sans">Tinggalkan doa dan pesan untuk kedua mempelai.</p>
                 </div>
 
-                <form id="messageForm" class="message-form">
+                <form id="messageForm" class="message-form"
+                    data-message-endpoint="<?= esc(base_url('api/invitations/' . rawurlencode($invitation['slug']) . '/messages'), 'attr') ?>">
                     <label class="work-sans" for="messageName">Nama</label>
                     <input id="messageName" name="name" type="text" maxlength="60" placeholder="Nama Anda" required>
                     <label class="work-sans" for="messageText">Pesan</label>
@@ -435,7 +413,7 @@ $bulan = [
 
     <script src="<?= base_url('js/undangan-1/undangan1.js') ?>"></script>
     <script src="<?= base_url('js/tamuLogic.js') ?>"></script>
-    <script type="module" src="../js/messageFirebase.js"></script>
+    <script src="<?= base_url('js/undangan-1/messages.js') ?>"></script>
 
     <!-- AOS -->
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
