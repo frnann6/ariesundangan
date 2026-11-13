@@ -133,7 +133,7 @@
                         alt="">
                     <h1 data-aos="zoom-in" data-aos-duration="1500" data-aos-delay="1500" class="great-vibes">
                     <?= esc($invitation['bride_name']) ?></h1>
-                    <span data-aos="zoom-in" data-aos-duration="1500" data-aos-delay="1600" class="work-sans">Putri
+                    <span data-aos="zoom-in" data-aos-duration="1500" data-aos-delay="1500" class="work-sans">Putri
                         pertama dari <?= esc($invitation['bride_father']) ?><br> dan
                         <?= esc($invitation['bride_mother']) ?></span>
                 </div>
@@ -168,12 +168,12 @@
         <section id="date-locate" class="date-locate">
 
             <div class="text-center content">
-                <h1 class="great-vibes" data-aos="zoom-in-up" data-aos-duration="1500" data-aos-delay="500">Save The
+                <h1 class="great-vibes" data-aos="zoom-in-up" data-aos-duration="1600" data-aos-delay="500">Save The
                     Date
                 </h1>
 
                 <div class="time work-sans" data-countdown-target="<?= esc($countdownTarget, 'attr') ?>"
-                    data-aos="zoom-in-up" data-aos-duration="1500" data-aos-delay="600">
+                    data-aos="zoom-in-up" data-aos-duration="1600" data-aos-delay="600">
                     <div class="border">
                         <h1>00</h1>
                         <p>Hari</p>
@@ -403,10 +403,23 @@
 
         <section class="closing"></section>
 
-        <footer></footer>
+        <section class="thank-you">
+            <div class="thank-you-inner">
+                <div class="flower-dekorasi">
+                    <img src="<?= base_url('img/undangan-1/dekorasi/top-flow.png') ?>" alt="" class="flower flower-top-left">
+                    <img src="<?= base_url('img/undangan-1/dekorasi/bottom-flow.png') ?>" alt="" class="flower flower-bottom">
+                </div>
+                <h1 class="great-vibes">Terima Kasih</h1>
+                <p class="work-sans">Dengan penuh rasa hormat dan sukacita, kami berharap Bapak/Ibu/Saudara/i berkenan meluangkan waktu untuk hadir serta memberikan doa restu kepada kami. Kehadiran dan doa yang diberikan merupakan kebahagiaan tersendiri bagi kami. Atas segala perhatian dan kehadirannya, kami ucapkan terima kasih.</p>
+            </div>
+        </section>
+
+        <footer>
+            <p class="footer-text work-sans">made with ariesundangan.my.id</p>
+        </footer>
 
         <audio id="weddingMusic" loop>
-            <source src="../songs/suratcintauntukstarlaa.wav" type="audio/mp3">
+            <source src="<?= base_url('music/eren-mikasa/suratcintauntukstarlaa.wav') ?>" type="audio/mp3">
         </audio>
 
     </div>

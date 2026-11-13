@@ -8,9 +8,15 @@ let musicEnabled = false;
 
 function setMusicButtonState(isPlaying) {
   musicToggle.innerHTML = isPlaying
-    ? `<i class="bi bi-pause-circle"></i>`
-    : `<i class="bi bi-play-circle"></i>`;
+    ? `<i class="bi bi-pause-circle-fill"></i>`
+    : `<i class="bi bi-play-circle-fill"></i>`;
   musicToggle.setAttribute("aria-pressed", String(isPlaying));
+
+  if (isPlaying) {
+    musicToggle.classList.add("playing");
+  } else {
+    musicToggle.classList.remove("playing");
+  }
 }
 
 async function playMusicIfAllowed() {

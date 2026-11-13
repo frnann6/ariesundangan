@@ -4,7 +4,7 @@ html {
 
 body {
     margin: 0;
-    background:#e8ddbec8;
+    /* background:#e8ddbec8; */
     display: flex;
     justify-content: center;
 }
@@ -971,6 +971,24 @@ body {
     flex-direction: column;
     gap: 12px;
     margin-top: 24px;
+    max-height: 380px;
+    overflow-y: auto;
+    padding-right: 6px;
+    scrollbar-width: thin;
+    scrollbar-color: #c99d7b #f3e9db;
+}
+
+.message-list::-webkit-scrollbar {
+    width: 6px;
+}
+
+.message-list::-webkit-scrollbar-track {
+    background: #f3e9db;
+}
+
+.message-list::-webkit-scrollbar-thumb {
+    background: #c99d7b;
+    border-radius: 3px;
 }
 
 .message-card {
@@ -1132,21 +1150,138 @@ body {
     text-align: center;
 }
 
+/* 8. Thank You */
+
+.thank-you {
+    background: #fdfaf5;
+    position: relative;
+    padding: 120px 18px 120px;
+    text-align: center;
+    overflow: hidden;
+}
+
+.thank-you .flower-dekorasi {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    pointer-events: none;
+}
+
+.thank-you h1 {
+    font-family: "Great Vibes", cursive;
+    font-size: 48px;
+    color: #6d4a3a;
+    margin: 30px 0 12px 0;
+    position: relative;
+    z-index: 2;
+}
+
+.thank-you p {
+    font-family: "Work Sans", sans-serif;
+    font-size: 15px;
+    color: #8a7a70;
+    margin: 0;
+    position: relative;
+    z-index: 2;
+}
+
+.thank-you .flower {
+    width: 220px;
+    height: auto;
+    position: absolute;
+}
+
+.thank-you .flower-top-left {
+    top: -40px;
+    left: -60px;
+    transform: rotate(-8deg);
+}
+
+.thank-you .flower-bottom {
+    bottom: -40px;
+    right: -60px;
+    transform: rotate(8deg);
+}
+
+footer {
+    text-align: center;
+    padding: 20px 18px 40px;
+}
+
+.footer-text {
+    font-family: "Work Sans", sans-serif;
+    font-size: 12px;
+    color: #a39385;
+    margin: 0;
+    letter-spacing: 0.5px;
+}
+
 /* == MUSIC == */
 
 .music-toggle {
     position: fixed;
-    bottom: 50px;
-    right: 20px;
+    bottom: 24px;
+    right: 24px;
     z-index: 10000;
-    border: 1px solid rgba(255, 255, 255, 0.367);
-    border-radius: 999px;
-    padding: 6px 8px;
+    width: 44px;
+    height: 44px;
+    border: none;
+    border-radius: 50%;
+    padding: 0;
     background: #986A52;
     color: #fff;
-    font-size: 20px;
+    font-size: 18px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
     cursor: pointer;
     -webkit-tap-highlight-color: transparent;
+    box-shadow: 0 4px 12px rgba(152, 106, 82, 0.35);
+    transition: transform 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
 }
 
-.music-toggle:hover {}
+.music-toggle:hover {
+    transform: scale(1.08);
+    background: #a97e5f;
+    box-shadow: 0 6px 16px rgba(152, 106, 82, 0.45);
+}
+
+.music-toggle:active {
+    transform: scale(0.94);
+}
+
+/* Saat musik diputar: ikon berputar + lentur (pulse) */
+.music-toggle.playing {
+    animation: musicPulse 2s ease-in-out infinite;
+}
+
+.music-toggle.playing i {
+    animation: musicSpin 3s linear infinite;
+}
+
+@keyframes musicPulse {
+    0%, 100% {
+        transform: scale(1);
+        box-shadow: 0 4px 12px rgba(152, 106, 82, 0.35);
+    }
+    50% {
+        transform: scale(1.12);
+        box-shadow: 0 6px 20px rgba(152, 106, 82, 0.55);
+    }
+}
+
+@keyframes musicSpin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.music-toggle:hover {
+    animation: none;
+}
