@@ -1,4 +1,19 @@
 <!DOCTYPE html>
+<?php
+/**
+ * @var array<string, mixed> $invitation
+ * @var bool $hasEvent
+ * @var string|null $eventPhotoUrl
+ * @var array{title: string, date: string, time: string, venue: string, address: string|null, maps_url: string, has_data: bool} $akad
+ * @var array{title: string, date: string, time: string, venue: string, address: string|null, maps_url: string, has_data: bool} $reception
+ * @var list<array{url: string, caption: string, layout_class: string}> $galleryImages
+ * @var string|null $storyPhotoUrl
+ * @var list<array<string, mixed>> $stories
+ * @var list<array<string, mixed>> $gifts
+ * @var string $formattedMainEventDate
+ * @var string $countdownTarget
+ */
+?>
 <html lang="en">
 
 <head>
