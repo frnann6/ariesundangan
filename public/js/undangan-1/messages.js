@@ -144,6 +144,9 @@ if (messageForm && messageList && messageStatus) {
         card.insertBefore(replyForm, replies);
       }
       replyToggle.setAttribute("aria-expanded", String(replyForm !== null));
+      replyToggle.innerHTML = replyForm
+        ? '<i class="bi bi-x" aria-hidden="true"></i><span>Tutup</span>'
+        : '<i class="bi bi-reply-fill" aria-hidden="true"></i><span>Balas</span>';
     });
 
     return card;
