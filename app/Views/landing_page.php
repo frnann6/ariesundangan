@@ -118,7 +118,7 @@
                 <div class="catalog-collection-title" id="koleksi-spesial"><span>Koleksi Spesial</span><i
                         class="bi bi-arrow-down-right"></i></div>
                 <div class="catalog-grid">
-                    <a class="catalog-card catalog-card-bloom" href="<?= base_url('eren-mikasa') ?>" target="_blank">
+                    <a class="catalog-card catalog-card-bloom" href="<?= base_url('catalogs/undangan-1') ?>" target="_blank">
                         <div class="catalog-preview">
                             <span class="preview-badge">SPECIAL 01</span>
                             <img src="<?= base_url('img/catalog-design/undangan-1.png') ?>"

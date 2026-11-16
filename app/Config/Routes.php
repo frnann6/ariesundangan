@@ -9,4 +9,5 @@ $routes->get('api/invitations/(:segment)/messages', 'InvitationMessages::index/$
 $routes->post('api/invitations/(:segment)/messages', 'InvitationMessages::create/$1');
 $routes->post('api/invitations/(:segment)/messages/(:num)/replies', 'InvitationMessages::createReply/$1/$2');
 
+$routes->get('catalogs/(:segment)', 'Catalogs::show/$1');
 $routes->get('(:segment)', 'Invitation::show/$1');
